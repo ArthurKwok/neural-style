@@ -2,7 +2,7 @@
 
 import tensorflow as tf
 import numpy as np
-import scipy.io
+import scipy.io as io
 
 VGG19_LAYERS = (
     'conv1_1', 'relu1_1', 'conv1_2', 'relu1_2', 'pool1',
@@ -20,7 +20,7 @@ VGG19_LAYERS = (
 )
 
 def load_net(data_path):
-    data = scipy.io.loadmat(data_path)
+    data = io.loadmat(data_path)
     if not all(i in data for i in ('layers', 'classes', 'normalization')):
         raise ValueError("You're using the wrong VGG19 data. Please follow the instructions in the README to download the correct data.")
     mean = data['normalization'][0][0][0]
